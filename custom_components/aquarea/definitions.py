@@ -148,19 +148,17 @@ EXTERNAL_PAD_HEATER_TYPE = {
 }
 
 BIVALENT_SETTING = {
-    "0": "Off",
-    "1": "Alternativ",
-    "2": "A-Off",
-    "3": "Parallel",
-    "4": "P-Off",
-    "5": "Parallel Advanced",
+    "100": "Off",
+    "101": "Alternativ",
+    "105": "Parallel",
+    "109": "Parallel Advanced",
 }
 BIVALENT_SETTING_READ = {
     "100": "Off",
     "101": "Alternativ",
-    "104": "A-Off",
+    "104": "Off",
     "105": "Parallel",
-    "108": "P-Off",
+    "108": "Off",
     "109": "Parallel Advanced",
 }
 
@@ -540,6 +538,32 @@ def build_numbers(mqtt_prefix: str) -> list[HeishaMonNumberEntityDescription]:
             state=int,
             state_to_mqtt=int,
         ),
+	HeishaMonNumberEntityDescription(
+            heishamon_topic_id="SET30",  # TOP120
+            key=f"{mqtt_prefix}main/Bivalent_Heating_Parallel_Adv_Starttemp",
+            command_topic=f"{mqtt_prefix}commands/SetBivalentStartTemperature",
+            name="DHW Target Temperature",
+            entity_category=EntityCategory.CONFIG,
+            device_class=SensorDeviceClass.TEMPERATURE,
+            native_unit_of_measurement="°C",
+            native_min_value=-15,
+            native_max_value=35,
+            state=int,
+            state_to_mqtt=int,
+        ),
+        HeishaMonNumberEntityDescription(
+            heishamon_topic_id="SET31",  # TOP121
+            key=f"{mqtt_prefix}main/Bivalent_Heating_Parallel_Adv_Stoptemp",
+            command_topic=f"{mqtt_prefix}commands/SetBivalentStopTemperature",
+            name="DHW Target Temperature",
+            entity_category=EntityCategory.CONFIG,
+            device_class=SensorDeviceClass.TEMPERATURE,
+            native_unit_of_measurement="°C",
+            native_min_value=-15,
+            native_max_value=35,
+            state=int,
+            state_to_mqtt=int,
+        ),
         HeishaMonNumberEntityDescription(
             heishamon_topic_id="SET15",  # also TOP95
             key=f"{mqtt_prefix}main/Max_Pump_Duty",
@@ -798,7 +822,7 @@ def build_selects(mqtt_prefix: str) -> list[HeishaMonSelectEntityDescription]:
             options=list(EXTERNAL_PAD_HEATER_TYPE.values()),
         ),
         HeishaMonSelectEntityDescription(
-            heishamon_topic_id="SET26",  # also TOP124
+            heishamon_topic_id="SET25",  # also TOP124
             key=f"{mqtt_prefix}main/Bivalent_Heating_Setting",
             command_topic=f"{mqtt_prefix}/commands/SetBivalentMode",
             name="Aquarea Bivalent Setting",
