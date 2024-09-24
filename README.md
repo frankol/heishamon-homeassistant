@@ -1,11 +1,11 @@
 # heishamon-homeassistant
 
-An integration for heatpumps handled by [heishamon](https://github.com/Egyras/HeishaMon).
+An integration for heatpumps handled by [heishamon](https://github.com/Egyras/HeishaMon) with bivalent heating.
 
 ## Installation
 
 Installation should be done using [hacs](https://hacs.xyz/).
-1-click: [![Open in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=kamaradclimber&repository=heishamon-homeassistant&category=integration)
+1-click: [![Open in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=frankol&repository=heishamon-homeassistant&category=integration)
 
 ## Configuration
 
