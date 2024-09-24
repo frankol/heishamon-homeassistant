@@ -147,6 +147,30 @@ EXTERNAL_PAD_HEATER_TYPE = {
     "2": "type-B",
 }
 
+BIVALENT_SETTING = {
+    "0": "Off",
+    "1": "Alternativ",
+    "2": "A-Off",
+    "3": "Parallel",
+    "4": "P-Off",
+    "5": "Parallel Advanced",
+}
+BIVALENT_SETTING_READ = {
+    "100": "Off",
+    "101": "Alternativ",
+    "104": "A-Off",
+    "105": "Parallel",
+    "108": "P-Off",
+    "109": "Parallel Advanced",
+}
+
+def read_bivalent_setting_enabled(value: str) -> Optional[str]:
+    return BIVALENT_SETTING_READ.get(
+        value, f"Unknown pad heater type value: {value}"
+    )
+	
+def BIVALENT_SETTING_to_mqtt(value: str) -> Optional[str]:
+    return lookup_by_value(BIVALENT_SETTING, value)
 
 def read_external_pad_heater_enabled(value: str) -> Optional[str]:
     return EXTERNAL_PAD_HEATER_TYPE.get(
@@ -772,6 +796,15 @@ def build_selects(mqtt_prefix: str) -> list[HeishaMonSelectEntityDescription]:
             state=read_external_pad_heater_enabled,
             state_to_mqtt=external_pad_heater_type_to_mqtt,
             options=list(EXTERNAL_PAD_HEATER_TYPE.values()),
+        ),
+        HeishaMonSelectEntityDescription(
+            heishamon_topic_id="SET26",  # also TOP124
+            key=f"{mqtt_prefix}main/Bivalent_Heating_Setting",
+            command_topic=f"{mqtt_prefix}/commands/SetBivalentMode",
+            name="Aquarea Bivalent Setting",
+            state=read_bivalent_setting_enabled,
+            state_to_mqtt=BIVALENT_SETTING_to_mqtt,
+            options=list(BIVALENT_SETTING.values()),
         ),
         HeishaMonSelectEntityDescription(
             heishamon_topic_id="SetSmartGridMode",
