@@ -542,7 +542,7 @@ def build_numbers(mqtt_prefix: str) -> list[HeishaMonNumberEntityDescription]:
             heishamon_topic_id="SET30",  # TOP120
             key=f"{mqtt_prefix}main/Bivalent_Heating_Parallel_Adv_Starttemp",
             command_topic=f"{mqtt_prefix}commands/SetBivalentStartTemperature",
-            name="DHW Target Temperature",
+            name="Bivalent Start Temperature",
             entity_category=EntityCategory.CONFIG,
             device_class=SensorDeviceClass.TEMPERATURE,
             native_unit_of_measurement="°C",
@@ -555,7 +555,7 @@ def build_numbers(mqtt_prefix: str) -> list[HeishaMonNumberEntityDescription]:
             heishamon_topic_id="SET31",  # TOP121
             key=f"{mqtt_prefix}main/Bivalent_Heating_Parallel_Adv_Stoptemp",
             command_topic=f"{mqtt_prefix}commands/SetBivalentStopTemperature",
-            name="DHW Target Temperature",
+            name="Bivalent Stop Temperature",
             entity_category=EntityCategory.CONFIG,
             device_class=SensorDeviceClass.TEMPERATURE,
             native_unit_of_measurement="°C",
