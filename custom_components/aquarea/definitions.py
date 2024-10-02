@@ -1731,6 +1731,18 @@ def build_sensors(mqtt_prefix: str) -> list[HeishaMonSensorEntityDescription]:
             native_unit_of_measurement="°C",
             entity_registry_enabled_default=False, # K/L Series
         ),
+	HeishaMonSensorEntityDescription(
+            heishamon_topic_id="TOP125",
+            key=f"{mqtt_prefix}main/2_Zone_mixing_valve_1_opening",
+            name="Aquarea Zone 1 mixing valve request",
+            state=read_mixing_valve_request,
+        ),
+	HeishaMonSensorEntityDescription(
+            heishamon_topic_id="TOP126",
+            key=f"{mqtt_prefix}main/2_Zone_mixing_valve_2_opening",
+            name="Aquarea Zone 2 mixing valve request",
+            state=read_mixing_valve_request,
+        ),
         HeishaMonSensorEntityDescription(
             heishamon_topic_id="STAT1_rssi",
             key=f"{mqtt_prefix}stats",
