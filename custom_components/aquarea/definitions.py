@@ -541,21 +541,34 @@ def build_numbers(mqtt_prefix: str) -> list[HeishaMonNumberEntityDescription]:
 	HeishaMonNumberEntityDescription(
             heishamon_topic_id="SET30",  # TOP120
             key=f"{mqtt_prefix}main/Bivalent_Heating_Parallel_Adv_Starttemp",
-            command_topic=f"{mqtt_prefix}commands/SetBivalentStartTemperature",
-            name="Bivalent Start Temperature",
+            command_topic=f"{mqtt_prefix}commands/SetBivalentStartAdvTemp",
+            name="Bivalent Start Adv Temperature",
             entity_category=EntityCategory.CONFIG,
             device_class=SensorDeviceClass.TEMPERATURE,
             native_unit_of_measurement="°C",
             native_min_value=-15,
-            native_max_value=35,
+            native_max_value=0,
             state=int,
             state_to_mqtt=int,
         ),
         HeishaMonNumberEntityDescription(
             heishamon_topic_id="SET31",  # TOP121
             key=f"{mqtt_prefix}main/Bivalent_Heating_Parallel_Adv_Stoptemp",
-            command_topic=f"{mqtt_prefix}commands/SetBivalentStopTemperature",
-            name="Bivalent Stop Temperature",
+            command_topic=f"{mqtt_prefix}commands/SetBivalentStopAdvTemp",
+            name="Bivalent Stop Adv Temperature",
+            entity_category=EntityCategory.CONFIG,
+            device_class=SensorDeviceClass.TEMPERATURE,
+            native_unit_of_measurement="°C",
+            native_min_value=-15,
+            native_max_value=0,
+            state=int,
+            state_to_mqtt=int,
+        ),
+	        HeishaMonNumberEntityDescription(
+            heishamon_topic_id="SET32",  # TOP119
+            key=f"{mqtt_prefix}main/Bivalent_Heating_Start_Temperature",
+            command_topic=f"{mqtt_prefix}commands/SetBivalentStartTemperature",
+            name="Bivalent Stop Adv Temperature",
             entity_category=EntityCategory.CONFIG,
             device_class=SensorDeviceClass.TEMPERATURE,
             native_unit_of_measurement="°C",
@@ -1730,6 +1743,14 @@ def build_sensors(mqtt_prefix: str) -> list[HeishaMonSensorEntityDescription]:
             device_class=SensorDeviceClass.TEMPERATURE,
             native_unit_of_measurement="°C",
             entity_registry_enabled_default=False, # K/L Series
+        ),
+	HeishaMonSensorEntityDescription(
+            heishamon_topic_id="TOP119",
+            key=f"{mqtt_prefix}main/Bivalent_Heating_Start_Temperature",
+            state_class=SensorStateClass.MEASUREMENT,
+            name="Aquarea bivalent start temp",
+            device_class=SensorDeviceClass.TEMPERATURE,
+            native_unit_of_measurement="°C",
         ),
 	HeishaMonSensorEntityDescription(
             heishamon_topic_id="TOP125",
